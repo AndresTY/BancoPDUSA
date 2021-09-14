@@ -1,0 +1,29 @@
+@startuml
+
+package Launcher{
+	class Validador{
+		~numgen:String
+		-Validador()
+		+getValidador(): Validador {static}
+		+validar(String): boolean
+		+next():String
+	}
+}
+
+package Perfil{
+	class Perfil{
+	    - creditoRotativo: Creditorotativo
+	    - cdt:CDT
+	    -cuentaAhorros: CuentaAhorros
+	    -cuentaCorriente: CuentaCorriente
+	    -tarjetasCredito: ArrayList<TarjetaCredito>
+	    -tarjetaDebito: ArrayList<TarjetaDebito>
+	    +checkNumero(Tarjeta): void
+	    +anadirTarjetaDebito(TarjetaDebito): void
+	    +anadirTarjetaCredito(TarjetaCredito): void
+	}
+}
+
+Validador --> Validador :"new"
+Perfil --> Validador :"use"
+@enduml
