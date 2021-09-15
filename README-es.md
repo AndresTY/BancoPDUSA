@@ -99,9 +99,19 @@ agregar nuevo codigo evitando modificar el antiguo
 
 ```java
 //code example
+public class PortafolioFactory {
+     public IPortafolioFactory darFactory(String c){
+        Map<String, IPortafolioFactory> map = new HashMap<String,  IPortafolioFactory>();
+        map.put("18",new Portafolio18Factory());
+        map.put("laboral",new PortafolioLaboralFactory());
+        map.put("menor",new PortafolioMenorFactory());
+        map.put("megaMillonario",new PortafolioMegaMillonarioFactory()); 
+        return map.get(c);
+    }
+}
 ```
 
---**Explication**--
+para no usar if y violar el principio se prefirio el uso de maps, ya que se agregaria codigo nuevo y se mantendria el antiguo.
 
 ### Principio de sustitucion de Liskov
 
@@ -161,9 +171,9 @@ El validador es una instancia que no puede ser creada mas de una vez, de ese mod
 
 ### Patron prototipo
 
-DIAGRAMA
+![](./etc/Prototype.umr.png)
 
-Explicacion del uso
+Clona los servicios para ahorra tiempo creando.
 
 ## Diagrama de clases
 

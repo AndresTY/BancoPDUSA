@@ -98,10 +98,21 @@ The class only has a simgle responsibility avoiding that besides creating the ob
 Try to add new code and do not modify the old one. for more security.
 
 ```java
-//code example
+//Example code
+
+public class PortafolioFactory {
+     public IPortafolioFactory darFactory(String c){
+        Map<String, IPortafolioFactory> map = new HashMap<String,  IPortafolioFactory>();
+        map.put("18",new Portafolio18Factory());
+        map.put("laboral",new PortafolioLaboralFactory());
+        map.put("menor",new PortafolioMenorFactory());
+        map.put("megaMillonario",new PortafolioMegaMillonarioFactory()); 
+        return map.get(c);
+    }
+}
 ```
 
---**Explication**--
+for the creation of a serice a map is usde to avoid violating the open/close principle using if's
 
 ### **L**iskov substitution principle
 
@@ -161,9 +172,9 @@ Validator is a unique instance that cannot be created mre than once, that is why
 
 ### Prototype pattern
 
-DIAGRAMA
+![](./etc/Prototype.umr.png)
 
-Explicacion del uso
+allows cloning services with the option to change attributes
 
 ## Class diagram
 
