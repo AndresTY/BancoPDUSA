@@ -61,7 +61,56 @@ public class Test {
         Assert(v.validar(t));
     
         
-       
+    }
+    
+    public void testCredito(){
+        PortafolioFactory pf = new PortafolioFactory();
+        IPortafolioFactory pfm = pf.darFactory("menor"); 
+        Portafolio pm = pfm.darPortafolio();
+        boolean f = false;
+        try{
+            pm.getTarjetasCredito().get(0).retirar(100); //tarjeta no activada
+        }
+        catch(Exception e){
+            f = true;
+        }
+        
+        Assert(f);
+        f = false;
+        try{
+            pm.getTarjetasCredito().get(0).retirar(20000000); //maximo excedido
+        }
+        catch(Exception e){
+            f = true;
+        }
+        Assert(f);
+        IPortafolioFactory pfl = pf.darFactory("laboral"); 
+        Portafolio pl = pfl.darPortafolio();
+        pl.getTarjetasCredito().get(0).retirar(4500);
+        Assert(pl.getTarjetasCredito().get(0).getCredito() == 4500);
+        
+        
+    }
+    
+    
+    
+    public void testDebito(){
+        PortafolioFactory pf = new PortafolioFactory();
+        IPortafolioFactory pfm = pf.darFactory("menor"); 
+        Portafolio pm = pfm.darPortafolio();
+        boolean f = false;
+        pm.getCuentaAhorros().meterDinero(10000000);
+        try{
+            pm.getTarjetasDebito().get(0).retirar(1000000); //maximo excedido
+        }
+        catch(Exception e){
+            f = true;
+        }
+        pm.getTarjetasDebito().get(0).retirar(1000);
+        
+        Assert(f);
+        Assert(pm.getCuentaAhorros().getSaldo()==10000000-1000);
+        
         
         
         
@@ -71,5 +120,7 @@ public class Test {
         portafoliosTest();
         validatorTest();
         cloneTest();
+        testCredito();
+        testDebito();
     }
 }
