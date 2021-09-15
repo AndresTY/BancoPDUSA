@@ -42,37 +42,37 @@ laboral
 Menor
 
 
-> **Restriction/Specification:** -
+> **Restriction/Specification:** a minor who wishes to enter the financial world
 >
-> **Savings accounts:** -
+> **Savings accounts:** True (enable)
 >
-> **current accounts:** -
+> **current accounts:** False (disable)
 >
-> **Debit card:** -
+> **Debit card:** with a transaction limit of $100.000
 >
-> **Credit card:** -
+> **Credit card:** credit limit of $1.000.000
 >
-> **CDT:** -
+> **CDT:** will be available to initiate a 2 years deposit in which they can ass money and the minimum opening amount $200.000
 >
-> **Revolving credit:** -
+> **Revolving credit:** disable ($0 to know about the existence of this)
 
 
 Millonario
 
 
-> **Restriction/Specification:** -
+> **Restriction/Specification:** Person with a large amount of money (MrBeast)
 >
-> **Savings accounts:** -
+> **Savings accounts:** True (enable)
 >
-> **current accounts:** -
+> **current accounts:** True (enable)
 >
-> **Debit card:** -
+> **Debit card:** with a transaction limit of $20.000.000
 >
-> **Credit card:** -
+> **Credit card:** Credit limit of $950.000.000
 >
-> **CDT:** -
+> **CDT:** will be available to initiate a 20 years deposit in which they can ass money and the minimum opening amount $1.000.000.000
 >
-> **Revolving credit:** -
+> **Revolving credit:** enable with a credit of $2.000.000.000
 
 
 |**Aditionals requirements**|

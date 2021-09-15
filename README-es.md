@@ -42,37 +42,37 @@ laboral
 Menor
 
 
-> **Restricion/especificacion:** -
+> **Restricion/especificacion:** personas menores de edad que desean ingresar al mundo financiero
 >
-> **Cuenta de Ahorros:** -
+> **Cuenta de Ahorros:** Habilitada
 >
-> **Cuenta corriente:** -
+> **Cuenta corriente:** Deshabilitada
 >
-> **Tarjeta de debito:** -
+> **Tarjeta de debito:** debito con limite de $100.000
 >
-> **Tarjeta de credito:** -
+> **Tarjeta de credito:** habilitada limite base $1.000.000
 >
-> **CDT:** -
+> **CDT:** inicia 2 anios con apertura de $200.000
 >
-> **credito rotativo:** -
+> **credito rotativo:** inhabilitada ($0 para poder activarla a futuro)
 
 
 Millonario
 
 
-> **Restricion/especificacion:** -
+> **Restricion/especificacion:** Personas con una gran capidad de endeudamiento e ingresos
 >
-> **Cuenta de Ahorros:** -
+> **Cuenta de Ahorros:** habilitada
 >
-> **Cuenta corriente:** -
+> **Cuenta corriente:** habilitada
 >
-> **Tarjeta de debito:** -
+> **Tarjeta de debito:** limite de $20.000.000
 >
-> **Tarjeta de credito:** -
+> **Tarjeta de credito:** limite de $950.000.000
 >
-> **CDT:** -
+> **CDT:** para 20 anios con apertura de $1.000.000.000
 >
-> **credito rotativo:** -
+> **credito rotativo:** habilitada con limite de $2.000.000.000
 
 
 |**Requerimientos adicionales**|
