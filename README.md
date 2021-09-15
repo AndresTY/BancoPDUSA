@@ -7,17 +7,17 @@ The bank has Created a portafolio according to its public, where according to th
 18
 
 > **Restriction/Specification:** people who have just turned 18 years old
-> 
+>
 > **Savings accounts:** True (enabled)
-> 
+>
 > **current accounts:** False (disabled)
-> 
+>
 > **Debit card:** with a transaction limit of $200.000
-> 
+>
 > **Credit card:** Basic card with a credit limit of $1.000.000
-> 
+>
 > **CDT:** will be available to initiate a 5 years deposit in which they can ass money and the minimum opening amount $1.000.000
-> 
+>
 > **Revolving credit:** disable ($0 to know about the existence of this)
 
 
@@ -25,17 +25,17 @@ laboral
 
 
 > **Restriction/Specification:** people who belong to the laboral world
-> 
+>
 > **Savings accounts:** True (enabled)
-> 
+>
 > **current accounts:** True (enabled)
-> 
+>
 > **Debit card:** with a transaction limit of $2.000.000
-> 
+>
 > **Credit card:** Basic card with a credit limit of $3.500.000
-> 
+>
 > **CDT:** will be available to initiate a 5 years deposit in which they can ass money and the minimum opening amount $1.000.000
-> 
+>
 > **Revolving credit:** enable with a credit of $2.000.000
 
 
@@ -43,17 +43,17 @@ Menor
 
 
 > **Restriction/Specification:** -
-> 
+>
 > **Savings accounts:** -
-> 
+>
 > **current accounts:** -
-> 
+>
 > **Debit card:** -
-> 
+>
 > **Credit card:** -
-> 
+>
 > **CDT:** -
-> 
+>
 > **Revolving credit:** -
 
 
@@ -61,17 +61,17 @@ Millonario
 
 
 > **Restriction/Specification:** -
-> 
+>
 > **Savings accounts:** -
-> 
+>
 > **current accounts:** -
-> 
+>
 > **Debit card:** -
-> 
+>
 > **Credit card:** -
-> 
+>
 > **CDT:** -
-> 
+>
 > **Revolving credit:** -
 
 
@@ -137,21 +137,21 @@ High-level modules should not depend on low-level modules, but should depend on 
 
 ### Factory pattern
 
-DIAGRAMA
+![](./etc/Factory.umr.png)
 
-Explicacion del uso
+The factory is used to create the bank service.
 
 ### Abstract Factory pattern
 
-DIAGRAMA
+![](./etc/Abstract.umr.png)
 
-Explicacion del uso
+the abstract is used to create factories of service, where each profile will create this Profile attributes.
 
 ### Builder pattern
+:
+![](./etc/Builder.umr.png)
 
-DIAGRAMA
-
-Explicacion del uso
+The builder builds the profiles by components. On the other hand, the factories od each profile will create the Profile attributes individually. 
 
 ### Singleton pattern
 

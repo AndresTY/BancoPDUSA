@@ -1,0 +1,94 @@
+@startuml
+
+package Perfil{
+	class Producto{
+		+idCliente:String
+		+nombreCliente:String
+	}
+}
+
+package Factories{
+	interface IProductoFactory{
+		darProducto(): Producto {abstract}
+		darProducto(String): Producto {abstract}
+	}
+	class TarjetaFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CuentaFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CDTFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CreditoRotativoFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+}
+
+package Tarjeta{
+	abstract class Tarjeta extends Producto{
+		-numero:String
+		+checkNumero():void
+		+toString():String
+	}
+	class TarjetaCredito extends Tarjeta{
+		-credito:float
+		-cupo:float
+		+retirar(float):void
+		+pagar(float,Cuenta):void
+	}
+	class TarjetaDebito extends Tarjeta{
+		-max:float
+		~cuenta:Cuenta
+		+retirar(float):void
+		+configurar(Cuenta):void
+	}
+}
+
+package Servicios{
+	class CDT extends Producto{
+		-cuenta:Cuenta
+		-cantidad:float
+		-interes:float
+		-id:int
+		-termino:float
+	}
+	class CreditoRotativo extends Producto{
+		-cupoMax:float
+		-cupoActual:float
+		-credito:float
+		-cupo:float
+		+pagar(float,Cuenta):void
+	}
+}
+
+package Cuentas{
+	abstract class Cuenta extends Producto{
+		-activo:boolean
+		-saldo:float
+		+retirarDinero(float a):void {abstract}
+		+checkActivo():void
+		+toString():String
+		+mterDinero():void
+	}
+	class CuentaAhorros extends Cuenta{
+		-tasaInteres:float
+		+generarInteres():void
+		+retirarDinero(float):void
+	}
+	class CuentaCorriente extends Cuenta{
+		retirarDinero(float):void
+	}
+}
+CuentaFactory --> CuentaAhorros: "create"
+CuentaFactory --> CuentaCorriente: "create"
+TarjetaFactory --> TarjetaDebito: "create"
+TarjetaFactory --> TarjetaCredito: "create"
+CDTFactory --> CDT: "create"
+CreditoRotativoFactory --> CreditoRotativo: "create"
+@enduml
