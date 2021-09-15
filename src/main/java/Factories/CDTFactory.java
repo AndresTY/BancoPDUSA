@@ -5,8 +5,8 @@
  */
 package Factories;
 
-import Perfil.Producto;
-import Servicio.CDT;
+import Productos.Producto;
+import Productos.Servicio.CDT;
 
 /**
  *

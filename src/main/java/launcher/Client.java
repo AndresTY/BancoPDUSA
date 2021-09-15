@@ -5,9 +5,12 @@
  */
 package launcher;
 
-import Cuenta.CuentaCorriente;
-import Perfil.Perfil;
+import Perfil.IPortafolioFactory;
+import Productos.Cuenta.CuentaCorriente;
+import Perfil.Portafolio;
 import Perfil.Portafolio18Factory;
+import Perfil.PortafolioFactory;
+import launcher.Tests.Test;
 
 /**
  *
@@ -15,14 +18,15 @@ import Perfil.Portafolio18Factory;
  */
 public class Client {
     public static void main(String args[]){
-        Portafolio18Factory pf = new Portafolio18Factory(); 
-        Perfil p = pf.darPortafolio();
-        System.out.println(p);
+        PortafolioFactory pf = new PortafolioFactory();
+        IPortafolioFactory pf18 = pf.darFactory("18"); 
+        Portafolio p18 = pf18.darPortafolio();
+        Test test = new Test();
+        test.runAll();
         
         
         
-        
-        
+       
         
     }
     

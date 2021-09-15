@@ -5,7 +5,7 @@
  */
 package Factories;
 
-import Perfil.Producto;
+import Productos.Producto;
 
 /**
  *

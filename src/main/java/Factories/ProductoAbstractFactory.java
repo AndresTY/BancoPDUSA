@@ -5,10 +5,10 @@
  */
 package Factories;
 
-import Perfil.Producto;
-import Tarjeta.Tarjeta;
-import Tarjeta.TarjetaCredito;
-import Tarjeta.TarjetaDebito;
+import Productos.Producto;
+import Productos.Tarjeta.Tarjeta;
+import Productos.Tarjeta.TarjetaCredito;
+import Productos.Tarjeta.TarjetaDebito;
 import java.util.HashMap;
 import java.util.Map;
 
