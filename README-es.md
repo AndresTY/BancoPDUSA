@@ -6,17 +6,17 @@ El banco PDUSA ha creado portafolios acorde a su publico. los cuales esperan mej
 
 18
 
-> **Resticcion/especificacion:** perosnas que recien cumplen 18 anios
+> **Resticcion/especificacion:** personas que recien cumplen 18 años
 >
 > **Cuenta de Ahorros:** Verdadero (Habilitada)
 >
 > **Cuenta Corriente:** Falso (inhabilidata)
 >
-> **Tarjeta de debito:** limite de transaccion de $200.000
+> **Tarjeta de debito:** limite de transacción de $200.000
 >
 > **Tarjeta de credito:** credito limite de $1.000.000
 >
-> **CDT:** inicial a 5 anios con una apertura minima de $1.000.000
+> **CDT:** inicial a 5 años con una apertura minima de $1.000.000
 >
 > **Credito rotativo:** inhabilitada ($0 para saber que existe)
 
@@ -30,11 +30,11 @@ laboral
 >
 > **Cuenta corriente:** habilitada
 >
-> **Tarjeta de debito:** limite de transaccion de $2.000.000
+> **Tarjeta de debito:** limite de transacción de $2.000.000
 >
 > **Tarjeta de credito:** limite de $3.500.000
 >
-> **CDT:** inicial a 5 anios con una apertura minima de $1.000.000
+> **CDT:** inicial a 5 años con una apertura minima de $1.000.000
 >
 > **credito rotativo:** habilitada con un limite de $2.000.000
 
@@ -48,11 +48,11 @@ Menor
 >
 > **Cuenta corriente:** Deshabilitada
 >
-> **Tarjeta de debito:** debito con limite de $100.000
+> **Tarjeta de debito:** débito con limite de $100.000
 >
 > **Tarjeta de credito:** habilitada limite base $1.000.000
 >
-> **CDT:** inicia 2 anios con apertura de $200.000
+> **CDT:** inicia 2 años con apertura de $200.000
 >
 > **credito rotativo:** inhabilitada ($0 para poder activarla a futuro)
 
@@ -60,30 +60,30 @@ Menor
 Millonario
 
 
-> **Restricion/especificacion:** Personas con una gran capidad de endeudamiento e ingresos
+> **Restricion/especificacion:** Personas con una gran cantidad de ingresos
 >
 > **Cuenta de Ahorros:** habilitada
 >
 > **Cuenta corriente:** habilitada
 >
-> **Tarjeta de debito:** limite de $20.000.000
+> **Tarjeta de debito:** límite de $20.000.000
 >
-> **Tarjeta de credito:** limite de $950.000.000
+> **Tarjeta de credito:** límite de $950.000.000
 >
 > **CDT:** para 20 anios con apertura de $1.000.000.000
 >
-> **credito rotativo:** habilitada con limite de $2.000.000.000
+> **credito rotativo:** habilitada con límite de $2.000.000.000
 
 
 |**Requerimientos adicionales**|
 |---|
-|Las creacion siempre tendra los mismo pasos|
-|duplicacion de servicios|
-|Los numero de las tarjetas se deben verificar con el algoritmo de luhn|
+|Las creación siempre tendra los mismo pasos|
+|duplicación de servicios|
+|Los número de las tarjetas se deben verificar con el algoritmo de Luhn|
 
 ## SOLID
 
-### Principio de unica responsabilidad 
+### Principio de única responsabilidad 
 
 una clase tiene una sola responsabilidad
 
@@ -95,7 +95,7 @@ public class Portafolio18Factory implements IPortafolioFactory {
      }
 }
 ```
-En este ejemplo se observa como las fabricas de los portafolios solo tiene una responsabilidad, la cual es entregar un portafolio. De igual manera, este otro ejemplo muestra como la fabrica de los servicios solo tiene la resposabilidad de crear el servicio.
+En este ejemplo se observa como las fabricas de los portafolios solo tiene una responsabilidad, la cual es entregar un portafolio. De igual manera, este otro ejemplo muestra como la fábrica de los servicios solo tiene la resposabilidad de crear el servicio.
 
 ```java
 public class CreditoRotativoFactory implements IProductoFactory{
@@ -111,7 +111,7 @@ public class CreditoRotativoFactory implements IProductoFactory{
 
 ### Principio de abierto/cerrado
 
-agregar nuevo codigo evitando modificar el antiguo
+agregar nuevo código evitando modificar el antiguo
 
 ```java
 //code example
@@ -129,7 +129,7 @@ public class PortafolioFactory {
 
 para no usar if y violar el principio se prefirio el uso de maps, ya que se agregaria codigo nuevo y se mantendria el antiguo.
 
-### Principio de sustitucion de Liskov
+### Principio de sustitución de Liskov
 
 todas las subclases se debe comportar como la clase padre
 
@@ -160,7 +160,7 @@ public class TarjetaCredito  extends Tarjeta{
 
 ```
 
-Cada uno de los productos cumple con la sustitución de liskov ya que todas las subclases se comportan como la clase, ya que cada producto está definido y no cae en errores por generalizaciones.
+Cada uno de los productos cumple con la sustitución de Liskov ya que todas las subclases se comportan como la clase, ya que cada producto está definido y no cae en errores por generalizaciones.
 
 ### Segregacion de interfaces
 
@@ -214,7 +214,7 @@ Las funcionalidades de los productos se fragmentan para reducir el tamaño de la
 
 ### Inversion de dependencias
 
-los modulos altos no deben depender de los bajos, preferiblemente depender de interfaces
+los módulos altos no deben depender de los bajos, preferiblemente depender de interfaces
 
 ```java
 public interface IPortafolioFactory {
@@ -254,13 +254,13 @@ fabrica las facbricas de servicios.
 
 ![](./etc/Builder.umr.png)
 
-Se construyen los componenetes del perfil. en donde, las fabricas de perfiles creara los atributos del perfil segun lo requiera
+Se construyen los componenetes del perfil. en donde, las fábricas de perfiles creara los atributos del perfil segun lo requiera
 
 ### Patron Singleton
 
 ![](./etc/Singleton.umr.png)
 
-El validador es una instancia que no puede ser creada mas de una vez, de ese modo para hacer uso de ella se llama a la funcion getValidador que creara o entregara el validador creado con anterioridad segun sea el caso
+El validador es una instancia que no puede ser creada más de una vez, de ese modo para hacer uso de ella se llama a la función getValidador que creara o entregara el validador creado con anterioridad segun sea el caso
 
 ### Patron prototipo
 

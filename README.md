@@ -1,12 +1,12 @@
 ## PDUSA Bank
 
-The bank has Created a portafolio according to its public, where according to the target public, it will offer a set of products with which it expectes to improve onboarding and customer retention.
+The bank has created a portafolio according to some public requierements, where according to the target public, it will offer a set of products with which it expectes to improve onboarding and customer retention.
 
 ### Clients profiles
 
 18
 
-> **Restriction/Specification:** people who have just turned 18 years old
+> **Restriction/Specification:** People who have just turned 18 years old, or are close to being 18 years old
 >
 > **Savings accounts:** True (enabled)
 >
@@ -16,15 +16,15 @@ The bank has Created a portafolio according to its public, where according to th
 >
 > **Credit card:** Basic card with a credit limit of $1.000.000
 >
-> **CDT:** will be available to initiate a 5 years deposit in which they can ass money and the minimum opening amount $1.000.000
+> **CDT:** will be available to initiate a 5 years deposit in which they can get interest on a minimum deposit of 1,000,000
 >
-> **Revolving credit:** disable ($0 to know about the existence of this)
+> **Revolving credit:** disabled ($0 to know about the existence of the product)
 
 
 laboral
 
 
-> **Restriction/Specification:** people who belong to the laboral world
+> **Restriction/Specification:** People who belong to the laboral world
 >
 > **Savings accounts:** True (enabled)
 >
@@ -34,15 +34,15 @@ laboral
 >
 > **Credit card:** Basic card with a credit limit of $3.500.000
 >
-> **CDT:** will be available to initiate a 5 years deposit in which they can ass money and the minimum opening amount $1.000.000
+> **CDT:** will be available to initiate a 5 years deposit in which they can get interest on a minimum deposit of 1,000,000
 >
-> **Revolving credit:** enable with a credit of $2.000.000
+> **Revolving credit:** enabled with a credit of $2.000.000
 
 
 Menor
 
 
-> **Restriction/Specification:** a minor who wishes to enter the financial world
+> **Restriction/Specification:** A minor who wishes to enter the financial world
 >
 > **Savings accounts:** True (enable)
 >
@@ -50,18 +50,18 @@ Menor
 >
 > **Debit card:** with a transaction limit of $100.000
 >
-> **Credit card:** credit limit of $1.000.000
+> **Credit card:** Disabled
 >
-> **CDT:** will be available to initiate a 2 years deposit in which they can ass money and the minimum opening amount $200.000
+> **CDT:** will be available to initiate a 2 years deposit in which they can get interest on a minimum deposit of 200,000
 >
 > **Revolving credit:** disable ($0 to know about the existence of this)
 
 
-Millonario
+MegaMillonario
 
 
-> **Restriction/Specification:** Person with a large amount of money (MrBeast)
->
+> **Restriction/Specification:** Person with a large amount of money 
+> 
 > **Savings accounts:** True (enable)
 >
 > **current accounts:** True (enable)
@@ -70,7 +70,7 @@ Millonario
 >
 > **Credit card:** Credit limit of $950.000.000
 >
-> **CDT:** will be available to initiate a 20 years deposit in which they can ass money and the minimum opening amount $1.000.000.000
+> **CDT:** will be available to initiate a 5 years deposit in which they can get interest on a minimum deposit of 100,000,000
 >
 > **Revolving credit:** enable with a credit of $2.000.000.000
 
@@ -162,7 +162,7 @@ public class TarjetaCredito  extends Tarjeta{
 
 ```
 
-Each oh the products fulfills the liskov substitution since all the subclasses behave like the class, since each product is defined and does not fall into errors due to generalizations.
+Each oh the products fulfills the Liskov substitution since all the subclasses behave like the class, since each product is defined and does not fall into errors due to generalizations.
 
 ### **I**nterface segregation principle
 
