@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servicio;
+package Productos.Servicio;
 
-import Cuenta.Cuenta;
-import Perfil.Producto;
+import Productos.Cuenta.Cuenta;
+import Productos.Producto;
 
 /**
  *
@@ -19,8 +19,9 @@ public class CreditoRotativo extends Producto  {
     
     private float credito=0; //Total debido en positivo
     private float cupo=1000000;
-    
+    public CreditoRotativo(){}
     public void pagar(float a, Cuenta c){
+        this.isActivo();
             c.retirarDinero(a);
             this.credito-=a;       
     }
@@ -39,6 +40,15 @@ public class CreditoRotativo extends Producto  {
 
     public void setCupo(float cupo) {
         this.cupo = cupo;
+    }
+    private CreditoRotativo(CreditoRotativo c){
+        super(c);
+        this.cupoMax = c.cupoMax;
+        this.cupoActual = c.cupoActual;
+    }
+    @Override
+    public Producto Clone() {
+        return new CreditoRotativo(this);
     }
     
 }

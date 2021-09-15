@@ -3,31 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Cuenta;
+package Productos.Cuenta;
 
 
-import Perfil.Producto;
+import Productos.Producto;
 import java.util.function.Function;
 /**
  *
  * @author Weriko
  */
 public abstract class Cuenta extends Producto {
-    private boolean activo ;
+    
     private float saldo;
 
     public float getSaldo() {
         this.checkActivo();
         return saldo;
     }
-
-    public boolean isActivo() {
-        return activo;
+    
+    
+    public Cuenta(){}
+    protected Cuenta(Cuenta c){
+        super(c);
+        this.saldo = c.saldo;
+         
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
 
     public void setSaldo(float saldo) {
         this.checkActivo();
@@ -36,19 +37,9 @@ public abstract class Cuenta extends Producto {
 
     public abstract void retirarDinero(float a);
     
-    public void checkActivo(){
-        if(!this.isActivo()){
-            throw new ArithmeticException("La cuenta no esta activa!");  
-            
-        }
-        
-        
-    }
+    
 
-    @Override
-    public String toString() {
-        return "Cuenta{" + "activo=" + activo + ", saldo=" + saldo + '}';
-    }
+ 
     
     
     public void meterDinero(float a) {

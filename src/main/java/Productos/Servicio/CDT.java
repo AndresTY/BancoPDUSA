@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servicio;
+package Productos.Servicio;
 
-import Cuenta.Cuenta;
-import Perfil.Producto;
+import Productos.Cuenta.Cuenta;
+import Productos.Producto;
 
 /**
  *
@@ -16,8 +16,10 @@ public class CDT extends Producto  {
     private Cuenta cuenta;
     private float cantidad;
 
-    
-
+    private float interes;
+    private int id;
+    private float termino= 365;
+    public CDT(){}
     public Cuenta getCuenta() {
         return cuenta;
     }
@@ -57,8 +59,21 @@ public class CDT extends Producto  {
     public void setTermino(float termino) {
         this.termino = termino;
     }
-    private float interes;
-    private int id;
-    private float termino= 365;
+    
+    
+    private CDT(CDT c){
+        super(c);
+         this.cuenta=c.cuenta;
+        this.cantidad=c.cantidad;
+
+    this.interes = c.interes;
+    this.id = c.id;
+    this.termino= c.termino;
+    }
+    
+    @Override
+    public Producto Clone() {
+        return new CDT(this);
+    }
     
 }

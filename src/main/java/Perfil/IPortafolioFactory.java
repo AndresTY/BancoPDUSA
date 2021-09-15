@@ -10,5 +10,6 @@ package Perfil;
  * @author Weriko
  */
 public interface IPortafolioFactory {
+    public Portafolio darPortafolio();
     
 }

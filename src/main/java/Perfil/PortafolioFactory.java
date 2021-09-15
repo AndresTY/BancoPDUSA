@@ -5,10 +5,27 @@
  */
 package Perfil;
 
+import Productos.Tarjeta.TarjetaCredito;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Weriko
  */
 public class PortafolioFactory {
+     public IPortafolioFactory darFactory(String c){
+        Map<String, IPortafolioFactory> map = new HashMap<String,  IPortafolioFactory>();
+        map.put("18",new Portafolio18Factory());
+        map.put("laboral",new PortafolioLaboralFactory());
+        map.put("menor",new PortafolioMenorFactory());
+        map.put("megaMillonario",new PortafolioMegaMillonarioFactory()); 
+        return map.get(c);
+        
+        
+    }
+   
+        
+    
     
 }

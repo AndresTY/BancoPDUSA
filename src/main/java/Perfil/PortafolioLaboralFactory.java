@@ -5,13 +5,16 @@
  */
 package Perfil;
 
-import Cuenta.Cuenta;
-import Cuenta.CuentaAhorros;
-import Cuenta.CuentaCorriente;
+import Productos.Cuenta.Cuenta;
+import Productos.Cuenta.CuentaAhorros;
+import Productos.Cuenta.CuentaCorriente;
 import Factories.CuentaFactory;
-
-
-import Tarjeta.TarjetaDebito;
+import Factories.IProductoFactory;
+import Factories.ProductoAbstractFactory;
+import Productos.Servicio.CDT;
+import Productos.Servicio.CreditoRotativo;
+import Productos.Tarjeta.TarjetaCredito;
+import Productos.Tarjeta.TarjetaDebito;
 
 import launcher.Validador;
 
@@ -19,42 +22,54 @@ import launcher.Validador;
  *
  * @author Weriko
  */
-public class PortafolioLaboralFactory {
-     /*
-    public Perfil darPerfil(){
+public class PortafolioLaboralFactory implements IPortafolioFactory {
+   public Portafolio darPortafolio(){
        
-       PerfilBuilder pf = new PerfilBuilder();
+                
+        
+        PortafolioBuilder pf = new PortafolioBuilder();
         pf.reset();
+        ProductoAbstractFactory paf = new ProductoAbstractFactory();
+        
         Validador v = Validador.getValidador();
-        CuentaFactory cf = new CuentaFactory();
-        Cuenta ca = cf.getCuenta("ahorros");
+        IProductoFactory cf =  paf.darFactory("Cuenta");
+        IProductoFactory CDTf =paf.darFactory("CDT");
+        IProductoFactory tf = paf.darFactory("Tarjeta");
+        IProductoFactory crf = paf.darFactory("CreditoRotativo");
+        
+        Cuenta ca = (Cuenta) cf.darProducto("ahorros");
         ca.setActivo(true);
         pf.putCuentaAhorros((CuentaAhorros) ca);
-        Cuenta cc = cf.getCuenta("corriente");
+        Cuenta cc = (Cuenta) cf.darProducto("corriente");
         cc.setActivo(true);
-        CDTBuilder cdtb = new CDTBuilder();
-        cdtb.reset();
-        cdtb.putTermino(5);
-        pf.putCdt(cdtb.darCDT());
+        
+        CDT cdt = (CDT) CDTf.darProducto();
+        cdt.setActivo(true);
+        cdt.setTermino(5);
+        cdt.setCantidad(1000000);
+        pf.putCdt(cdt);
         pf.putCuentaCorriente((CuentaCorriente) cc);
         
-        TarjetaDebitoBuilder db = new TarjetaDebitoBuilder();
-        db.reset();
-        db.putNumero(v.next());
-      
-        db.configurarCuenta(ca);
-        pf.putTarjetaDebito((TarjetaDebito) db.darTarjeta());
-     
-        
-        TarjetaCreditoBuilder cb = new TarjetaCreditoBuilder();
-        cb.reset();
-        cb.putCupo(1000000);
-        cb.putNumero(v.next());
-        cb.configurarCuenta(ca);
-        
-        pf.putTarjetaDebito((TarjetaDebito) db.darTarjeta());
-        return pf.darPerfil();
-    }
-    */
+        TarjetaDebito db = (TarjetaDebito) tf.darProducto("debito");
+        db.setActivo(true);
 
+        db.setNumero(v.next());
+        db.setMax(2000000f);
+        db.setCuenta(ca);
+        pf.putTarjetaDebito(db);
+        CreditoRotativo cr = (CreditoRotativo) crf.darProducto();
+        cr.setCupo(2000000);
+        cr.setActivo(true);
+        pf.putCreditoRotativo(cr);
+        TarjetaCredito cb = (TarjetaCredito) tf.darProducto("credito");
+        cb.setActivo(true);
+
+        cb.setCupo(3500000);
+        cb.setNumero(v.next());
+        
+        pf.putTarjetaCredito(cb);
+        return pf.darPerfil();
+      
+    } 
+    
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Cuenta;
+package Productos.Cuenta;
 
 /**
  *
@@ -16,6 +16,20 @@ public class CuentaAhorros extends Cuenta {
     public void generarInteres() {
         this.checkActivo();
         this.setSaldo(this.getSaldo() * (1 + this.tasaInteres));
+    }
+
+
+   
+    public CuentaAhorros(){}
+    
+    private CuentaAhorros(CuentaAhorros c){
+        super(c);
+        this.tasaInteres = c.tasaInteres;
+        
+    }
+    
+    public CuentaAhorros Clone(){
+        return new CuentaAhorros(this);
     }
 
     public void retirarDinero(float a) {

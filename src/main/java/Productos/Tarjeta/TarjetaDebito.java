@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tarjeta;
+package Productos.Tarjeta;
 
-import Cuenta.Cuenta;
+import Productos.Cuenta.Cuenta;
+import Productos.Producto;
 import launcher.Validador;
 
 /**
@@ -15,9 +16,11 @@ import launcher.Validador;
 public class TarjetaDebito extends Tarjeta {
 
     private float max;
-
+    
+    
+    
     Cuenta cuenta = null;
-
+    public TarjetaDebito(){}
     public Cuenta getCuenta() {
         return cuenta;
     }
@@ -27,6 +30,7 @@ public class TarjetaDebito extends Tarjeta {
     }
 
     public void retirar(float a) {
+        this.isActivo();
         if (a > max) {
             throw new ArithmeticException("Limite por transaccion excedido!");
         } 
@@ -46,6 +50,16 @@ public class TarjetaDebito extends Tarjeta {
 
     public void setMax(float max) {
         this.max = max;
+    }
+    private TarjetaDebito (TarjetaDebito  t){
+        super(t);
+        this.max = t.max;
+        this.cuenta = t.cuenta;
+    }
+
+    @Override
+    public Producto Clone() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
   

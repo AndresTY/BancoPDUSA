@@ -5,14 +5,13 @@
  */
 package Perfil;
 
-import Cuenta.CuentaAhorros;
-import Cuenta.CuentaCorriente;
-import Servicio.CDT;
-import Servicio.CreditoRotativo;
-import Tarjeta.ITarjeta;
-import Tarjeta.Tarjeta;
-import Tarjeta.TarjetaCredito;
-import Tarjeta.TarjetaDebito;
+import Productos.Cuenta.CuentaAhorros;
+import Productos.Cuenta.CuentaCorriente;
+import Productos.Servicio.CDT;
+import Productos.Servicio.CreditoRotativo;
+import Productos.Tarjeta.Tarjeta;
+import Productos.Tarjeta.TarjetaCredito;
+import Productos.Tarjeta.TarjetaDebito;
 import java.util.ArrayList;
 import launcher.Validador;
 
@@ -20,7 +19,7 @@ import launcher.Validador;
  *
  * @author Weriko
  */
-public class Perfil {
+public class Portafolio {
     private CreditoRotativo creditoRotativo;
     private CDT cdt;
     

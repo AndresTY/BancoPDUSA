@@ -5,13 +5,13 @@
  */
 package Factories;
 
-import Cuenta.Cuenta;
-import Cuenta.CuentaAhorros;
-import Cuenta.CuentaCorriente;
-import Perfil.Producto;
-import Tarjeta.Tarjeta;
-import Tarjeta.TarjetaCredito;
-import Tarjeta.TarjetaDebito;
+import Productos.Cuenta.Cuenta;
+import Productos.Cuenta.CuentaAhorros;
+import Productos.Cuenta.CuentaCorriente;
+import Productos.Producto;
+import Productos.Tarjeta.Tarjeta;
+import Productos.Tarjeta.TarjetaCredito;
+import Productos.Tarjeta.TarjetaDebito;
 import java.util.HashMap;
 import java.util.Map;
 

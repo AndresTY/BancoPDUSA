@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tarjeta;
+package Productos.Tarjeta;
 
-import Perfil.Producto;
+import Productos.Producto;
 import launcher.Validador;
 
 /**
@@ -16,7 +16,7 @@ public abstract class Tarjeta extends Producto  {
     private String numero = "";
     
     
-  
+    public Tarjeta(){}
 
     public String getNumero() {
         return numero;
@@ -34,6 +34,10 @@ public abstract class Tarjeta extends Producto  {
         }
         
         
+    }
+    protected Tarjeta(Tarjeta t){
+        super(t);
+        this.numero = t.numero;
     }
 
     @Override

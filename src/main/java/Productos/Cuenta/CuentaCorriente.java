@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Cuenta;
+package Productos.Cuenta;
 
 /**
  *
@@ -11,7 +11,14 @@ package Cuenta;
  */
 public class CuentaCorriente extends Cuenta {
 
-    
+    public CuentaCorriente(){}
+    public CuentaCorriente(CuentaCorriente c){
+        super(c);
+        
+    }
+    public CuentaCorriente Clone(){
+        return new CuentaCorriente(this);
+    }
 
     public void retirarDinero(float a) { //El saldo puede ser negativo en una cuenta corriente
             this.checkActivo();
@@ -23,6 +30,7 @@ public class CuentaCorriente extends Cuenta {
             }
     
         }
+
     }
 
 

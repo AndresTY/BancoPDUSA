@@ -5,23 +5,23 @@
  */
 package Perfil;
 
-import Cuenta.CuentaAhorros;
-import Cuenta.CuentaCorriente;
-import Servicio.CDT;
-import Servicio.CreditoRotativo;
-import Tarjeta.TarjetaCredito;
-import Tarjeta.TarjetaDebito;
+import Productos.Cuenta.CuentaAhorros;
+import Productos.Cuenta.CuentaCorriente;
+import Productos.Servicio.CDT;
+import Productos.Servicio.CreditoRotativo;
+import Productos.Tarjeta.TarjetaCredito;
+import Productos.Tarjeta.TarjetaDebito;
 import launcher.Validador;
 
 /**
  *
  * @author Weriko
  */
-public class PerfilBuilder {
-    Perfil perfil;
+public class PortafolioBuilder {
+    Portafolio perfil;
     
     public void reset(){
-        this.perfil = new Perfil();
+        this.perfil = new Portafolio();
     }
     
 
@@ -51,7 +51,7 @@ public class PerfilBuilder {
     public void putCuentaCorriente(CuentaCorriente cuentaCorriente) {
         perfil.setCuentaCorriente(cuentaCorriente);
     }
-    public Perfil darPerfil(){
+    public Portafolio darPerfil(){
         return this.perfil;
     }
 }
