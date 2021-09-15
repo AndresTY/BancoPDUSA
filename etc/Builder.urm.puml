@@ -1,0 +1,45 @@
+@startuml
+package Perfiles{
+	class Perfil{
+		-creditoRotativo:CreditoRotativo
+		-cdt:CDT
+		-cuentaAhorros:CuentaAhorros
+		-cuentaCorriente:CuentaCorriente
+		-tarjetasCredito:ArrayList<TarjetaCredito>
+		-tarjetasDebito: ArrayList<TarjetaDebito>
+		+checkNumero(Tarjeta):void
+		+toString():String
+		+anadirTarjetaCredito(TarjetaCredito):void
+		+anadirTarjetaDebito(TarjetaDebito):void
+	}
+	class PerfilBuilder{
+		perfil:Perfil
+		reset():void
+		putTarjetaCredito(TarjetaCredito):void
+		putTarjetaDebito(TarjetaDebito):void
+		putCreditoRotativo(CreditoRotativo):void
+		putCdt(CDT):void
+		putCuentaAhorro(CuentaAhorros):void
+		putCuentaCorriente(CuentaCorriente):void
+		darPerfil():Perfil
+	}
+	class Portafolio18Factory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioLaboralFactory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioMegaMillonarioFactory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioMenorFactory{
+		+darPortafolio():Perfil
+	}
+}
+
+PerfilBuilder ..> Perfil: "create"
+Portafolio18Factory o-- PerfilBuilder
+PortafolioLaboralFactory o-- PerfilBuilder
+PortafolioMegaMillonarioFactory o-- PerfilBuilder
+PortafolioMenorFactory o-- PerfilBuilder
+@enduml
