@@ -88,10 +88,27 @@ Millonario
 The class only has a simgle responsibility avoiding that besides creating the objetc, it also does the actions of the object.
 
 ```java
-//code example
+public class Portafolio18Factory implements IPortafolioFactory {
+   
+    public Portafolio darPortafolio(){
+     //build Portafolio
+     }
+}
 ```
 
---**Explication**--
+An example of this principle is the PortafolioFactory since it has a single responsibility to deliver a portafolio. Similarly, the ProductFactory also complies with this principle since the only responsibility it has is to deliver a certain Product
+
+```java
+public class CreditoRotativoFactory implements IProductoFactory{
+    public Producto darProducto(){
+        return new CreditoRotativo();
+    }
+    public Producto darProducto(String s){
+        return new CreditoRotativo();
+    }
+    
+}
+```
 
 ### **O**pen/closed principle
 
@@ -119,30 +136,108 @@ for the creation of a serice a map is usde to avoid violating the open/close pri
 Any subclass must be able to be used as if it were the parent class
 
 ```java
-//Code example
+public abstract class Tarjeta extends Producto  {
+    private String numero = "";
+    public Tarjeta(){}
+    //...
+    @Override
+    public String toString() {
+        return "Tarjeta{" + "numero=" + numero + '}';
+    }
+    
+}
+
+public class TarjetaCredito  extends Tarjeta{
+    
+    
+    private float credito=0; //Total debido en positivo
+    private float cupo=1000000;
+    //...
+    public Producto Clone() {
+        return new TarjetaCredito(this);
+    }
+    
+    
+}
+
 ```
 
---**Explication**--
+Each oh the products fulfills the liskov substitution since all the subclasses behave like the class, since each product is defined and does not fall into errors due to generalizations.
 
 ### **I**nterface segregation principle
 
 Use by fragmentation of class or interfaces in order not ro modify a big class
 
 ```java
-//Code example
+public abstract class Producto {
+    private boolean activo = false;
+    public String idCliente;
+    public String nombreCliente;
+    //...
+    public void checkActivo() {
+        if (!this.isActivo()) {
+            throw new ArithmeticException("La cuenta no esta activa!");
+
+        }
+
+    }
+}
+public abstract class Cuenta extends Producto {   
+    private float saldo;
+    //...
+    public void meterDinero(float a) {
+        this.checkActivo();
+        
+        if (a < 0) {
+            System.out.println("ERROR: la cantidad a retirar no puede ser negativa");
+        } else {
+            this.setSaldo(this.getSaldo() + a);
+        }
+
+    }
+
+}
+public class CuentaAhorros extends Cuenta {
+
+    private float tasaInteres;
+
+    public void generarInteres() {
+        this.checkActivo();
+        this.setSaldo(this.getSaldo() * (1 + this.tasaInteres));
+    }
+    //...
+    public CuentaAhorros Clone(){
+        return new CuentaAhorros(this);
+    }
+}
 ```
 
---**Explication**--
+The functionalities of the products are fragmented in order to reduce the size of the class to implement and on the other hand not to be using portions of a large function. In this case, we could create a large class for the products but we would incur in the violation of this principle, so we choose to fragment the product in each of its types (Card,Account,etc...), which in turn will be fragmented in the different type offered 
 
 ### **D**ependency inversion principle
 
 High-level modules should not depend on low-level modules, but should depend on interfaces.
 
 ```java
-//Code example
+
+public interface IPortafolioFactory {
+    public Portafolio darPortafolio();
+    
+}
+
+public class PortafolioFactory {
+     public IPortafolioFactory darFactory(String c){
+        Map<String, IPortafolioFactory> map = new HashMap<String,  IPortafolioFactory>();
+        map.put("18",new Portafolio18Factory());
+        map.put("laboral",new PortafolioLaboralFactory());
+        map.put("menor",new PortafolioMenorFactory());
+        map.put("megaMillonario",new PortafolioMegaMillonarioFactory()); 
+        return map.get(c);   
+    }   
+}
 ```
 
---**Explication**--
+In this case, we can observe the principle since PortafolioFactory does not depend on each big class but on an interface that relates it with the class for he creation of the services
 
 ## Patterns
 

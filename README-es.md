@@ -88,10 +88,26 @@ Millonario
 una clase tiene una sola responsabilidad
 
 ```java
-//code example
+public class Portafolio18Factory implements IPortafolioFactory {
+   
+    public Portafolio darPortafolio(){
+     //build Portafolio
+     }
+}
 ```
+En este ejemplo se observa como las fabricas de los portafolios solo tiene una responsabilidad, la cual es entregar un portafolio. De igual manera, este otro ejemplo muestra como la fabrica de los servicios solo tiene la resposabilidad de crear el servicio.
 
---**Explication**--
+```java
+public class CreditoRotativoFactory implements IProductoFactory{
+    public Producto darProducto(){
+        return new CreditoRotativo();
+    }
+    public Producto darProducto(String s){
+        return new CreditoRotativo();
+    }
+    
+}
+```
 
 ### Principio de abierto/cerrado
 
@@ -118,30 +134,107 @@ para no usar if y violar el principio se prefirio el uso de maps, ya que se agre
 todas las subclases se debe comportar como la clase padre
 
 ```java
-//Code example
+public abstract class Tarjeta extends Producto  {
+    private String numero = "";
+    public Tarjeta(){}
+    //...
+    @Override
+    public String toString() {
+        return "Tarjeta{" + "numero=" + numero + '}';
+    }
+    
+}
+
+public class TarjetaCredito  extends Tarjeta{
+    
+    
+    private float credito=0; //Total debido en positivo
+    private float cupo=1000000;
+    //...
+    public Producto Clone() {
+        return new TarjetaCredito(this);
+    }
+    
+    
+}
+
 ```
 
---**Explication**--
+Cada uno de los productos cumple con la sustitución de liskov ya que todas las subclases se comportan como la clase, ya que cada producto está definido y no cae en errores por generalizaciones.
 
 ### Segregacion de interfaces
 
 fragmentear las Grandes clases para no estarla modificando
 
 ```java
-//Code example
+public abstract class Producto {
+    private boolean activo = false;
+    public String idCliente;
+    public String nombreCliente;
+    //...
+    public void checkActivo() {
+        if (!this.isActivo()) {
+            throw new ArithmeticException("La cuenta no esta activa!");
+
+        }
+
+    }
+}
+public abstract class Cuenta extends Producto {   
+    private float saldo;
+    //...
+    public void meterDinero(float a) {
+        this.checkActivo();
+        
+        if (a < 0) {
+            System.out.println("ERROR: la cantidad a retirar no puede ser negativa");
+        } else {
+            this.setSaldo(this.getSaldo() + a);
+        }
+
+    }
+
+}
+public class CuentaAhorros extends Cuenta {
+
+    private float tasaInteres;
+
+    public void generarInteres() {
+        this.checkActivo();
+        this.setSaldo(this.getSaldo() * (1 + this.tasaInteres));
+    }
+    //...
+    public CuentaAhorros Clone(){
+        return new CuentaAhorros(this);
+    }
+}
 ```
 
---**Explication**--
+Las funcionalidades de los productos se fragmentan para reducir el tamaño de la clase a implementar y por otro lado no estar utilizando porciones de una función grande.
 
 ### Inversion de dependencias
 
 los modulos altos no deben depender de los bajos, preferiblemente depender de interfaces
 
 ```java
-//Code example
+public interface IPortafolioFactory {
+    public Portafolio darPortafolio();
+    
+}
+
+public class PortafolioFactory {
+     public IPortafolioFactory darFactory(String c){
+        Map<String, IPortafolioFactory> map = new HashMap<String,  IPortafolioFactory>();
+        map.put("18",new Portafolio18Factory());
+        map.put("laboral",new PortafolioLaboralFactory());
+        map.put("menor",new PortafolioMenorFactory());
+        map.put("megaMillonario",new PortafolioMegaMillonarioFactory()); 
+        return map.get(c);   
+    }   
+}
 ```
 
---**Explication**--
+En este caso, podemos observar el principio ya que PortafolioFactory no depende de cada gran clase sino de una interfaz que la relaciona con la clase para la creación de los servicios
 
 ## Patrones
 
