@@ -1,0 +1,75 @@
+@startuml
+
+package productos{
+
+	class Producto{
+		+idCliente:String
+		+nombreCliente:String
+		+Clone():Producto
+	}
+
+	package Tarjeta{
+	abstract class Tarjeta extends Producto{
+		-numero:String
+		+checkNumero():void
+		+toString():String
+	}
+	class TarjetaCredito extends Tarjeta{
+		-credito:float
+		-cupo:float
+		+retirar(float):void
+		+pagar(float,Cuenta):void
+		+Clone():Producto
+	}
+	class TarjetaDebito extends Tarjeta{
+		-max:float
+		~cuenta:Cuenta
+		+retirar(float):void
+		+configurar(Cuenta):void
+		+Clone():Producto
+	}
+	}
+
+package Servicios{
+	class CDT extends Producto{
+		-cuenta:Cuenta
+		-cantidad:float
+		-interes:float
+		-id:int
+		-termino:float
+		+Clone():Producto
+	}
+	class CreditoRotativo extends Producto{
+		-cupoMax:float
+		-cupoActual:float
+		-credito:float
+		-cupo:float
+		+pagar(float,Cuenta):void
+		+Clone():Producto
+	}
+	}
+
+package Cuentas{
+	abstract class Cuenta extends Producto{
+		-activo:boolean
+		-saldo:float
+		+retirarDinero(float a):void {abstract}
+		+checkActivo():void
+		+toString():String
+		+mterDinero():void
+	}
+	class CuentaAhorros extends Cuenta{
+		-tasaInteres:float
+		+generarInteres():void
+		+retirarDinero(float):void
+		+Clone():Producto
+	}
+	class CuentaCorriente extends Cuenta{
+		retirarDinero(float):void
+		+Clone():Producto
+	}
+	}
+}
+
+
+@enduml

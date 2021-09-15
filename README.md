@@ -42,37 +42,37 @@ laboral
 Menor
 
 
-> **Restriction/Specification:** -
+> **Restriction/Specification:** a minor who wishes to enter the financial world
 >
-> **Savings accounts:** -
+> **Savings accounts:** True (enable)
 >
-> **current accounts:** -
+> **current accounts:** False (disable)
 >
-> **Debit card:** -
+> **Debit card:** with a transaction limit of $100.000
 >
-> **Credit card:** -
+> **Credit card:** credit limit of $1.000.000
 >
-> **CDT:** -
+> **CDT:** will be available to initiate a 2 years deposit in which they can ass money and the minimum opening amount $200.000
 >
-> **Revolving credit:** -
+> **Revolving credit:** disable ($0 to know about the existence of this)
 
 
 Millonario
 
 
-> **Restriction/Specification:** -
+> **Restriction/Specification:** Person with a large amount of money (MrBeast)
 >
-> **Savings accounts:** -
+> **Savings accounts:** True (enable)
 >
-> **current accounts:** -
+> **current accounts:** True (enable)
 >
-> **Debit card:** -
+> **Debit card:** with a transaction limit of $20.000.000
 >
-> **Credit card:** -
+> **Credit card:** Credit limit of $950.000.000
 >
-> **CDT:** -
+> **CDT:** will be available to initiate a 20 years deposit in which they can ass money and the minimum opening amount $1.000.000.000
 >
-> **Revolving credit:** -
+> **Revolving credit:** enable with a credit of $2.000.000.000
 
 
 |**Aditionals requirements**|
@@ -98,10 +98,21 @@ The class only has a simgle responsibility avoiding that besides creating the ob
 Try to add new code and do not modify the old one. for more security.
 
 ```java
-//code example
+//Example code
+
+public class PortafolioFactory {
+     public IPortafolioFactory darFactory(String c){
+        Map<String, IPortafolioFactory> map = new HashMap<String,  IPortafolioFactory>();
+        map.put("18",new Portafolio18Factory());
+        map.put("laboral",new PortafolioLaboralFactory());
+        map.put("menor",new PortafolioMenorFactory());
+        map.put("megaMillonario",new PortafolioMegaMillonarioFactory()); 
+        return map.get(c);
+    }
+}
 ```
 
---**Explication**--
+for the creation of a serice a map is usde to avoid violating the open/close principle using if's
 
 ### **L**iskov substitution principle
 
@@ -161,12 +172,12 @@ Validator is a unique instance that cannot be created mre than once, that is why
 
 ### Prototype pattern
 
-DIAGRAMA
+![](./etc/Prototype.umr.png)
 
-Explicacion del uso
+allows cloning services with the option to change attributes
 
 ## Class diagram
 
-diagramita
+![](./etc/diagram.png)
 
 

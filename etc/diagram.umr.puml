@@ -1,0 +1,213 @@
+@startuml
+
+package Factories{
+	interface IProductoFactory{
+		darProducto(): Producto {abstract}
+		darProducto(String): Producto {abstract}
+	}
+	class TarjetaFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CuentaFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CDTFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CreditoRotativoFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class ProductoAbstractFactory{
+		+darProducto(String):IProductoFactory
+	}
+	}
+package Perfiles{
+	interface IPortafolioFactory{
+		+darPortafolio():Portafolio {abstract}
+	}
+	class Portafolio{
+		-creditoRotativo: CreditoRotativo
+		-cdt:CDT
+		-cuentaAhorros: CuentaAhorros
+		-cuentaCorriente: CuentaCorriente
+		-tarjetasCredito: ArrayList<TarjetasCredito>
+		-tarjetasDebito: ArrayList<TarjetasDebito>
+		+checkNumero(Tarjeta):void
+		+toString():String
+		+anadirTarjetaCredito(TarjetasCredito):void
+		+anadirTarjetaDebito(TarjetasDebito):void
+	}
+	class Portafolio18Factory implements IPortafolioFactory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioLaboralFactory implements IPortafolioFactory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioMegaMillonarioFactory implements IPortafolioFactory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioMenorFactory implements IPortafolioFactory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioBuilder{
+		~perfil:Portafolio
+		+reset():void
+		+putTarjetasCredito(TarjetasCredito):void
+		+putTarjetasDebito(TarjetasDebito):void
+		+putCreditoRotativo(CreditoRotativo):void
+		+putCdt(CDT):void
+		+putCuentaAhorros(CuentaAhorros):void
+		+putCuentaCorriente(CuentaCorriente):void
+		+darPerfil():Portafolio
+	}
+	class PortafolioFactory{
+		+darFactory(String):IPortafolioFactory
+	}
+	}
+package Productos{
+	abstract class Producto{
+		-activo: boolean
+		+idCliente:String
+		+nombreCliente:String
+		+Producto()
+		+Producto(Producto)
+		+checkActivo():void
+	}
+	package Tarjetas{
+	abstract class Tarjeta extends Producto{
+		-numero:String
+		+checkNumero():void
+		+toString():String
+		+Tarjeta()
+		#Tarjeta(Tarjeta)
+	}
+	class TarjetaCredito extends Tarjeta{
+		-credito:float
+		-cupo:float
+		+retirar(float):void
+		+pagar(float,Cuenta):void
+		+TarjetaCredito()
+		-TarjetaCredito(TarjetaCredito)
+		+Clone():Producto
+	}
+	class TarjetaDebito extends Tarjeta{
+		-max:float
+		~cuenta:Cuenta
+		+retirar(float):void
+		+configurar(Cuenta):void
+		+TarjetaDebito()
+		-TarjetaDebito(TarjetaDebito)
+		+Clone():Producto
+	}
+	}
+
+	package Servicios{
+	class CDT extends Producto{
+		-cuenta:Cuenta
+		-cantidad:float
+		-interes:float
+		-id:int
+		-termino:float
+		+CDT()
+		-CDT(CDT)
+		+Clone():Producto
+
+	}
+	class CreditoRotativo extends Producto{
+		-cupoMax:float
+		-cupoActual:float
+		-credito:float
+		-cupo:float
+		+pagar(float,Cuenta):void
+		+CreditoRotativo()
+		-CreditoRotativo(CreditoRotativo)
+		+Clone():Producto
+	}
+	}
+
+	package Cuentas{
+	abstract class Cuenta extends Producto{
+		-activo:boolean
+		-saldo:float
+		+Cuenta()
+		#Cuenta(Cuenta)
+		+retirarDinero(float a):void {abstract}
+		+checkActivo():void
+		+toString():String
+		+meterDinero():void
+	}
+	class CuentaAhorros extends Cuenta{
+		-tasaInteres:float
+		+CuentaAhorros()
+		-CuentaAhorros(CuentaAhorros)
+		+Clone():Producto
+		+generarInteres():void
+		+retirarDinero(float):void
+	}
+	class CuentaCorriente extends Cuenta{
+		+CuentaCorriente()
+		-CuentaCorriente(CuentaCorriente)
+		+Clone():Producto
+		retirarDinero(float):void
+	}
+	}
+}
+
+package Launcher{
+	class Validador{
+		~numgen:String
+		-Validador()
+		+getValidador(): Validador {static}
+		+validar(String): boolean
+		+next():String
+	}
+	class Client{
+		+main(String[]):void {static}
+	}
+	package Tests{
+		class Tests{
+			+Assert(boolean):void
+			+cloneTest():void
+			+portafolioTest():void
+			+validadorTest:void
+			+runAll:void
+		}
+	}
+}
+Portafolio ..> CreditoRotativo
+Portafolio ..> CDT
+Portafolio ..> CuentaAhorros
+Portafolio ..> CuentaCorriente
+Portafolio ..> TarjetaCredito
+Portafolio ..> TarjetaDebito
+PortafolioBuilder ..> Portafolio
+Tarjetas --> TarjetaFactory
+Servicios --> CDTFactory
+Servicios --> CreditoRotativoFactory
+Cuentas --> CuentaFactory
+TarjetaFactory --|> ProductoAbstractFactory
+CDTFactory --|> ProductoAbstractFactory
+CreditoRotativoFactory --|> ProductoAbstractFactory
+CuentaFactory --|> ProductoAbstractFactory
+Portafolio18Factory --> ProductoAbstractFactory
+PortafolioMenorFactory --> ProductoAbstractFactory
+PortafolioMegaMillonarioFactory --> ProductoAbstractFactory
+PortafolioLaboralFactory --> ProductoAbstractFactory
+PerfilBuilder ..> Perfil: "create"
+Portafolio18Factory o-- PerfilBuilder
+PortafolioLaboralFactory o-- PerfilBuilder
+PortafolioMegaMillonarioFactory o-- PerfilBuilder
+PortafolioMenorFactory o-- PerfilBuilder
+CuentaFactory --> CuentaAhorros: "create"
+CuentaFactory --> CuentaCorriente: "create"
+TarjetaFactory --> TarjetaDebito: "create"
+TarjetaFactory --> TarjetaCredito: "create"
+CDTFactory --> CDT: "create"
+CreditoRotativoFactory --> CreditoRotativo: "create"
+Validador --> Validador :"new"
+Perfil --> Validador :"use"
+@enduml
