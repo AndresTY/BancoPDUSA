@@ -143,12 +143,12 @@ The factory is used to create the bank service.
 
 ### Abstract Factory pattern
 
-DIAGRAMA
+![](./etc/Abstract.umr.png)
 
-Explicacion del uso
+the abstract is used to create factories of service, where each profile will create this Profile attributes.
 
 ### Builder pattern
-
+:
 ![](./etc/Builder.umr.png)
 
 The builder builds the profiles by components. On the other hand, the factories od each profile will create the Profile attributes individually. 

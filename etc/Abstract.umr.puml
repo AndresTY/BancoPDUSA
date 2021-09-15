@@ -1,0 +1,58 @@
+@startuml
+package Perfiles{
+	class Portafolio18Factory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioLaboralFactory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioMegaMillonarioFactory{
+		+darPortafolio():Perfil
+	}
+	class PortafolioMenorFactory{
+		+darPortafolio():Perfil
+	}
+}
+package Factories{
+	interface IProductoFactory{
+		darProducto(): Producto {abstract}
+		darProducto(String): Producto {abstract}
+	}
+	class TarjetaFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CuentaFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CDTFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class CreditoRotativoFactory implements IProductoFactory{
+		darProducto(): Producto
+		darProducto(String): Producto
+	}
+	class ProductoAbstractFactory{
+		+darProducto(String):IProductoFactory
+	}
+}
+package Tarjetas{}
+package Servicios{}
+package Cuentas{}
+
+Tarjetas --> TarjetaFactory
+Servicios --> CDTFactory
+Servicios --> CreditoRotativoFactory
+Cuentas --> CuentaFactory
+TarjetaFactory --|> ProductoAbstractFactory
+CDTFactory --|> ProductoAbstractFactory
+CreditoRotativoFactory --|> ProductoAbstractFactory
+CuentaFactory --|> ProductoAbstractFactory
+Portafolio18Factory --> ProductoAbstractFactory
+PortafolioMenorFactory --> ProductoAbstractFactory
+PortafolioMegaMillonarioFactory --> ProductoAbstractFactory
+PortafolioLaboralFactory --> ProductoAbstractFactory
+
+@enduml
