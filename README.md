@@ -178,6 +178,6 @@ allows cloning services with the option to change attributes
 
 ## Class diagram
 
-diagramita
+![](./etc/diagram.png)
 
 

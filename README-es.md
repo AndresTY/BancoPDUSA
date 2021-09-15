@@ -177,4 +177,4 @@ Clona los servicios para ahorra tiempo creando.
 
 ## Diagrama de clases
 
-diagramita
+![](./etc/diagram.png)
